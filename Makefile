@@ -14,7 +14,7 @@ SOURCES_MAIN = src/main.c src/utils.c src/notes.c src/search.c
 SOURCES_TEST = tests/test_main.c src/utils.c src/notes.c
 HEADERS = src/notes.h
 
-.PHONY: all build test install clean
+.PHONY: all build test install uninstall clean
 
 all: build
 
@@ -32,8 +32,10 @@ $(BUILD_DIR)/test_notes: $(SOURCES_TEST) $(HEADERS)
 	$(CC) $(CFLAGS) -Isrc -o $@ $(SOURCES_TEST) $(LDFLAGS)
 
 install: build
-	mkdir -p $(PREFIX)/bin
-	cp $(BUILD_DIR)/notes $(PREFIX)/bin/notes
+	@PREFIX=$(PREFIX) bash scripts/install.sh
+
+uninstall:
+	@PREFIX=$(PREFIX) bash scripts/uninstall.sh $(if $(FORCE),-f)
 
 clean:
 	rm -rf $(BUILD_DIR)
