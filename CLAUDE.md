@@ -79,6 +79,11 @@ Error messages must be actionable: notes: could not open file: <path>, not just 
 - Small POSIX shell tests or simple C tests via `make test`. Do not introduce a test framework.
 - New features require tests.
 
+## Documentation
+- When a new feature is complete and agreed upon, check `README.md` and update it to reflect the change.
+- When the project directory structure changes and those changes are agreed upon, update the `## Project structure` section in this file.
+- Do not update documentation speculatively — only after the implementation or structure change is finalized.
+
 ## Pull requests
 - Builds with `make`.
 - Tests pass.
